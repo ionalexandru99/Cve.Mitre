@@ -8,6 +8,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C4CCE4B7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cve.Mitre.Tests", "tests\Cve.Mitre.Tests\Cve.Mitre.Tests.csproj", "{017C3672-51DA-449F-82EB-AACB6831DB79}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cve.Mitre.Models", "src\Cve.Mitre.Models\Cve.Mitre.Models.csproj", "{C6720B5C-1708-48A3-B408-70F786263A7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,9 +24,14 @@ Global
 		{017C3672-51DA-449F-82EB-AACB6831DB79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{017C3672-51DA-449F-82EB-AACB6831DB79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{017C3672-51DA-449F-82EB-AACB6831DB79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6720B5C-1708-48A3-B408-70F786263A7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6720B5C-1708-48A3-B408-70F786263A7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6720B5C-1708-48A3-B408-70F786263A7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6720B5C-1708-48A3-B408-70F786263A7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1C5CA6F6-B33F-4B73-AF94-A744ABDF4508} = {77F9707A-CB04-4760-8F51-984D2A9FF4F3}
 		{017C3672-51DA-449F-82EB-AACB6831DB79} = {C4CCE4B7-40DA-47B8-A48E-DB4997E5F598}
+		{C6720B5C-1708-48A3-B408-70F786263A7C} = {77F9707A-CB04-4760-8F51-984D2A9FF4F3}
 	EndGlobalSection
 EndGlobal
