@@ -44,9 +44,5 @@ jobs:
       - name: Determine Version
         id: gitversion
         uses: gittools/actions/gitversion/execute@v0.9.7
-      - name: Restore dependencies
-        run: dotnet restore
-      - name: Build
-        run: dotnet build --no-restore
       - name: Pack
-        run: dotnet pack --configuration Release --output releases /p:Version=${{ steps.gitversion.outputs.nuGetVersion }} --no-restore --no-build
+        run: dotnet pack --configuration Release --output releases /p:Version=${{ steps.gitversion.outputs.nuGetVersion }}
