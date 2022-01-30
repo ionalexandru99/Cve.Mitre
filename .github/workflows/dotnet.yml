@@ -44,8 +44,18 @@ jobs:
         if: github.ref != 'refs/heads/master'
         run: git branch --create-reflog master origin/master
       - name: Run GitVersion
+        id: gitversion
         uses: roryprimrose/rungitversion@v1.0.0
         with:
           nofetch: false
           nocache: false
-      - 
+      - name: Output version values
+        run: |
+          echo "Major: ${{ steps.gitversion.outputs.Major }}"
+          echo "Minor: ${{ steps.gitversion.outputs.Minor }}"
+          echo "Patch: ${{ steps.gitversion.outputs.Patch }}"
+          echo "PreReleaseTag: ${{ steps.gitversion.outputs.PreReleaseTag }}"
+          echo "NuGetVersionV2: ${{ steps.gitversion.outputs.NuGetVersionV2 }}"
+          echo "NuGetVersion: ${{ steps.gitversion.outputs.NuGetVersion }}"
+          echo "NuGetPreReleaseTagV2: ${{ steps.gitversion.outputs.NuGetPreReleaseTagV2 }}"
+          echo "NuGetPreReleaseTag: ${{ steps.gitversion.outputs.NuGetPreReleaseTag }}"
