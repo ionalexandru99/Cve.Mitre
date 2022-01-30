@@ -48,3 +48,9 @@ jobs:
         run: dotnet pack --configuration Release --output releases /p:Version=${{ steps.gitversion.outputs.nuGetVersion }}
       - name: Publish
         run: dotnet nuget push ./releases/*.nupkg --api-key ${{ secrets.PAT }} --source "https://nuget.pkg.github.com/OWNER/index.json"
+      - name: Tag
+        uses: mathieudutour/github-tag-action@v6.0
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.PAT }}
+          custom_tag: ${{ steps.gitversion.outputs.nuGetVersion }}
