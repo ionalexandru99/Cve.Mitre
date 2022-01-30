@@ -47,4 +47,4 @@ jobs:
       - name: Pack
         run: dotnet pack --configuration Release --output releases /p:Version=${{ steps.gitversion.outputs.nuGetVersion }}
       - name: Publish
-        run: dotnet nuget push ./releases/*.nupkg --api-key ${{ secrets.PAT }} --source "https://github.com/ionalexandru99/Cve.Mitre.git"
+        run: dotnet nuget push ./releases/*.nupkg --api-key ${{ secrets.PAT }} --source "https://nuget.pkg.github.com/OWNER/index.json"
