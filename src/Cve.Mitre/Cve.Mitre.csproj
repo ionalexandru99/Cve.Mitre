@@ -8,4 +8,12 @@
         <RepositoryUrl>https://github.com/ionalexandru99/Cve.Mitre</RepositoryUrl>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Cve.Mitre.Models\Cve.Mitre.Models.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Exceptions" />
+    </ItemGroup>
+
 </Project>

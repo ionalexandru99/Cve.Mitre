@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using Cve.Mitre.Models.Enums;
 using Cve.Mitre.Models.Extensions;
 using Xunit;
 
@@ -14,7 +15,7 @@ public class UriExtensionsTests
     [InlineData("    test test   ", "https://cve.mitre.org/cgi-bin/cvename.cgi?name=test%20test")]
     public void ShouldReturnValidUri(string value, string expectedValue)
     {
-        var result = value.UriFormat();
+        var result = value.UriFormat(UrlType.Vulnerability);
         
         Assert.NotNull(result);
         Assert.Equal(expectedValue, result!.AbsoluteUri);
@@ -26,7 +27,7 @@ public class UriExtensionsTests
     [InlineData("    ")]
     public void ShouldReturnDefaultUri(string? id)
     {
-        var result = id.UriFormat();
+        var result = id.UriFormat(UrlType.Vulnerability);
         Assert.Null(result);
     }
 }
