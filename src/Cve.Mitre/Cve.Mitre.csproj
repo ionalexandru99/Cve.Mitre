@@ -13,7 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Exceptions" />
+      <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
     </ItemGroup>
 
 </Project>

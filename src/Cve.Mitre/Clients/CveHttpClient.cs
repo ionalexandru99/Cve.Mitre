@@ -1,4 +1,4 @@
-using Cve.Mitre.Models;
+using Cve.Mitre.Exceptions;
 using Cve.Mitre.Models.Enums;
 using Cve.Mitre.Models.Extensions;
 
@@ -22,7 +22,7 @@ public class CveHttpClient : ICveHttpClient
         }
 
         var client = new HttpClient();
-
+        
         var result = await client.GetAsync(url);
 
         result.EnsureSuccessStatusCode();
@@ -46,11 +46,18 @@ public class CveHttpClient : ICveHttpClient
         }
 
         var client = new HttpClient();
-
+        
         var result = await client.GetAsync(url);
 
         result.EnsureSuccessStatusCode();
 
+        var resultBody = await result.Content.ReadAsStringAsync();
+
+        if (resultBody.Contains($"'{cveId}' is a malformed CVE-ID"))
+        {
+            throw new InvalidCveIdException("The specified CveId could not be found on the website");
+        }
+        
         return await result.Content.ReadAsStringAsync();
     }
 }
