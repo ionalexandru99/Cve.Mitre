@@ -48,11 +48,11 @@ public class CveHttpClientTests
         Assert.Contains("Description", result);
     }
 
-    [Fact]
-    public async Task ShouldThrowErrorForInvalidId()
+    [Theory]
+    [InlineData("CVE-2023-0238")]
+    [InlineData("CVE-2022-02")]
+    public async Task ShouldThrowErrorForInvalidId(string id)
     {
-        const string id = "CVE-2022-02";
-
         var cveHttpClient = new CveHttpClient();
 
         await Assert.ThrowsAsync<InvalidCveIdException>(() => cveHttpClient.GetVulnerability(id));

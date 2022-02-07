@@ -37,6 +37,7 @@ public class CveHttpClient : ICveHttpClient
     /// <returns>String containing html code with result data</returns>
     /// <exception cref="ArgumentException">This error will be thrown if no url can be generated for the provided keyword</exception>
     /// <exception cref="HttpRequestException">Http request was not successful</exception>
+    /// <exception cref="InvalidCveIdException">This exception is thrown when the provided CveId is not found on the website</exception>
     public async Task<string> GetVulnerability(string cveId)
     {
         var url = cveId.UriFormat(UrlType.Vulnerability);
@@ -53,7 +54,8 @@ public class CveHttpClient : ICveHttpClient
 
         var resultBody = await result.Content.ReadAsStringAsync();
 
-        if (resultBody.Contains($"'{cveId}' is a malformed CVE-ID"))
+        if (resultBody.Contains($"'{cveId}' is a malformed CVE-ID") || 
+            resultBody.Contains($"Couldn't find '{cveId}'"))
         {
             throw new InvalidCveIdException("The specified CveId could not be found on the website");
         }
