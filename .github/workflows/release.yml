@@ -16,7 +16,7 @@ jobs:
         with: 
           dotnet-version: 6.0.x
       - name: Pack
-        run: dotnet pack --configuration Release --output releases /p:Version=${{ milestone.title }}
+        run: dotnet pack --configuration Release --output releases /p:Version=${{ github.event.milestone.title }}
       - name: Publish
         run: dotnet nuget push ./releases/*.nupkg --api-key ${{ secrets.PAT }} --source "https://nuget.pkg.github.com/ionalexandru99/index.json"
       - name: Tag
@@ -24,4 +24,4 @@ jobs:
         if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.PAT }}
-          custom_tag: ${{ milestone.title }}
+          custom_tag: ${{ github.event.milestone.title }}
