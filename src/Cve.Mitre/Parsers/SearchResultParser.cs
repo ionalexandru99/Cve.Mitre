@@ -22,10 +22,28 @@ public class SearchResultParser : IParser<SearchResult>
     
     public List<SearchResult> Parse(string htmlPage)
     {
-        var tableHtml = ExtractTable(htmlPage);
-        var tableRows = ExtractTableRows(tableHtml).ToList();
+        if (string.IsNullOrWhiteSpace(htmlPage))
+        {
+            return new List<SearchResult>();
+        }
         
-        return tableRows.Select(ExtractSearchResult).ToList();
+        var tableHtml = ExtractTable(htmlPage);
+
+        if (string.IsNullOrWhiteSpace(tableHtml))
+        {
+            return new List<SearchResult>();
+        }
+        
+        var tableRows = ExtractTableRows(tableHtml).ToList();
+
+        if (tableRows.Count == 0)
+        {
+            return new List<SearchResult>();
+        }
+        
+        return tableRows
+            .Where(x => x.Contains(TableDataEnd))
+            .Select(ExtractSearchResult).ToList();
     }
     
     private static string ExtractTable(string html)
@@ -42,7 +60,13 @@ public class SearchResultParser : IParser<SearchResult>
 
     private static IEnumerable<string> ExtractTableRows(string html)
     {
+        if (!html.Contains(TableRowEnd))
+        {
+            return new List<string>();
+        }
+        
         var tableRows = html.Split(TableRowEnd).ToList();
+        
         tableRows = tableRows
             .Select(x => x.Split(TableRowStart).Last())
             .ToList();
@@ -80,7 +104,11 @@ public class SearchResultParser : IParser<SearchResult>
     /// <exception cref="HtmlDataException">Will be thrown if there are more or less than 2 table data blocks in the html string parameter</exception>
     private static (string, string) DeconstructTableRow(string html)
     {
-        var data = html.Split(TableDataEnd);
+        var data = html
+            .Trim()
+            .Split(TableDataEnd)
+            .Where(x => !string.IsNullOrWhiteSpace(x))
+            .ToArray();
 
         if (data.Length != 2)
         {
