@@ -26,4 +26,11 @@
       <ProjectReference Include="..\..\src\Cve.Mitre\Cve.Mitre.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Resources\SearchResults.html" />
+      <EmbeddedResource Include="Resources\SearchResults.html" />
+      <None Remove="Resources\InvalidSearchResults.html" />
+      <EmbeddedResource Include="Resources\InvalidSearchResults.html" />
+    </ItemGroup>
+
 </Project>
