@@ -35,8 +35,6 @@ jobs:
         uses: actions/setup-dotnet@v1
         with: 
           dotnet-version: 6.0.x
-      #- name: GitTools
-        #uses: GitTools/actions@v0.9.11
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0.9.7
         with:
@@ -47,7 +45,7 @@ jobs:
       - name: Pack
         run: dotnet pack --configuration Release --output releases /p:Version=${{ steps.gitversion.outputs.nuGetVersion }}
       - name: Publish
-        run: dotnet nuget push ./releases/*.nupkg --api-key ${{ secrets.PAT }} --source "https://nuget.pkg.github.com/OWNER/index.json"
+        run: dotnet nuget push ./releases/*.nupkg --api-key ${{ secrets.PAT }} --source https://api.nuget.org/v3/index.json
       - name: Tag
         uses: mathieudutour/github-tag-action@v6.0
         if: github.ref == 'refs/heads/main'
