@@ -49,12 +49,9 @@ public class SearchResultParser : IParser<SearchResult>
     private static string ExtractTable(string html)
     {
         return html
-            .Split(ContentHeaderDelimiter)
-            .Last()
-            .Split(ContentFooterDelimiter)
-            .First()
-            .Split(TableHeaderDelimiter)
-            .Last()
+            .Split(ContentHeaderDelimiter).Last()
+            .Split(ContentFooterDelimiter).First()
+            .Split(TableHeaderDelimiter).Last()
             .Trim();
     }
 
@@ -78,15 +75,12 @@ public class SearchResultParser : IParser<SearchResult>
         var (idData, descriptionData) = DeconstructTableRow(html);
 
         var description = descriptionData
-            .Split(DescriptionStart)
-            .Last()
+            .Split(DescriptionStart).Last()
             .Trim();
 
         var id = idData
-            .Split(IdEnd)
-            .First()
-            .Split(IdStart)
-            .Last()
+            .Split(IdEnd).First()
+            .Split(IdStart).Last()
             .Trim();
         
         return new SearchResult
