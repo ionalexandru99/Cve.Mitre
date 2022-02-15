@@ -18,7 +18,7 @@ jobs:
       - name: Pack
         run: dotnet pack --configuration Release --output releases /p:Version=${{ github.event.milestone.title }}
       - name: Publish
-        run: dotnet nuget push ./releases/*.nupkg --api-key ${{ secrets.PAT }} --source "https://nuget.pkg.github.com/ionalexandru99/index.json"
+        run: dotnet nuget push ./releases/*.nupkg --api-key ${{ secrets.NUGET }} --source "https://nuget.pkg.github.com/ionalexandru99/index.json"
       - name: Tag
         uses: mathieudutour/github-tag-action@v6.0
         if: github.ref == 'refs/heads/main'
