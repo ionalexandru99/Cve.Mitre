@@ -1,1 +1,1 @@
-# Cve.Mitre
+# Cve.Mitre [![.NET](https://github.com/ionalexandru99/Cve.Mitre/actions/workflows/dotnet.yml/badge.svg)](https://github.com/ionalexandru99/Cve.Mitre/actions/workflows/dotnet.yml) [![Release](https://github.com/ionalexandru99/Cve.Mitre/actions/workflows/release.yml/badge.svg)](https://github.com/ionalexandru99/Cve.Mitre/actions/workflows/release.yml) ![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Cve.Mitre) ![Nuget](https://img.shields.io/nuget/dt/Cve.Mitre)
