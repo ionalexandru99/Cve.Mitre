@@ -6,6 +6,7 @@
         <Nullable>enable</Nullable>
         <IsPackable>true</IsPackable>
         <RepositoryUrl>https://github.com/ionalexandru99/Cve.Mitre</RepositoryUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
