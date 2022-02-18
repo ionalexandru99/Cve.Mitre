@@ -4,11 +4,9 @@ namespace Cve.Mitre;
 
 public interface ICveProcessor
 {
-    Task<List<SearchResult>> GetSearchResults(string keyWord);
-    Task<List<SearchResult>> GetSearchResults(string keyWord, int year);
-    List<Vulnerability> GetVulnerabilities(string keyWord);
-    List<Vulnerability> GetVulnerabilities(string keyWord, int year);
-    List<Vulnerability> GetVulnerabilities(List<SearchResult> searchResults);
-    Vulnerability GetVulnerabilityById(string cveId);
-    Vulnerability GetVulnerability(SearchResult searchResult);
+    Task<List<SearchResult>> GetSearchResultsAsync(string keyWord, int? year = default);
+    Task<List<Vulnerability>> GetVulnerabilitiesAsync(string keyWord, int? year = default);
+    Task<List<Vulnerability>> GetVulnerabilitiesAsync(List<SearchResult> searchResults);
+    Task<Vulnerability> GetVulnerabilityByIdAsync(string cveId);
+    Task<Vulnerability> GetVulnerabilityAsync(SearchResult searchResult);
 }
